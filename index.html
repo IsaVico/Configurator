@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Price configurator</title>
+	<script>
+	var minPrice = 6;
+	var widthValues = [50,60,70,80,90,100,120,130,150,200,250,300];
+	var heightValues = [50,60,70,80,90,100,120,130,150,200,250,300];
+	function getPrice(){
+		var price =  document.getElementById('amount').value * 
+			getWidthPrice(document.getElementById('width').value) * 
+			getHeightPrice(document.getElementById('height').value);
+		document.getElementById('price').setAttribute('value', price );
+	}
+		
+	function getWidthPrice(width){
+		var i;
+		if(width < widthValues[0]){
+			return minPrice;
+		}else{
+			for(i=0; i< widthValues.length-1;i++){
+				if(width > widthValues[i] && width <= widthValues[i+1]){
+					return i*1.15*minPrice;
+				}
+			}
+		}
+	}
+			
+	function getHeightPrice(height){
+		var i;
+		if(height < heightValues[0]){
+			return minPrice;
+		}else{
+			for(i=0; i< heightValues.length-1;i++){
+				if(height > heightValues[i] && height <= heightValues[i+1]){
+					return i*1.15*minPrice;
+				}
+			}
+		}
+	}
+	</script>
+</head>
+<body style="text-align:center">
+    
+    <table border="0">
+		<tbody>
+			<tr>
+				<td>Cantidad: </td>
+				<td><input id="amount" type="number" min="1" max="1000000" step="1" value ="1" onblur="getPrice()"/></td>
+			</tr>
+			<tr>
+				<td>Ancho: </td>
+				<td><input id="width" type="number" min="5" max="1500" step="5" value ="5" onblur="getPrice()"/></td>
+			</tr>
+			<tr>
+				<td>Alto: </td>
+				<td><input id="height" type="number" min="5" max="1500" step="5" value ="5" onblur="getPrice()"/></td>
+			</tr>
+			<tr>
+				<td>Total: </td>
+				<td><input id="price" value=""/>€</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
