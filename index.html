@@ -3,42 +3,28 @@
 <head>
     <title>Price configurator</title>
 	<script>
-	var minPrice = 6;
-	var widthValues = [50,60,70,80,90,100,120,130,150,200,250,300];
-	var heightValues = [50,60,70,80,90,100,120,130,150,200,250,300];
+	var minPrice = 0.029;//El cm cuesta 0.029€
+		
 	function getPrice(){
-		var price =  document.getElementById('amount').value * 
-			getWidthPrice(document.getElementById('width').value) * 
-			getHeightPrice(document.getElementById('height').value);
-		document.getElementById('price').setAttribute('value', price );
+		var amount, 
+			widthPrice, 
+			heightPrice, 
+			price;
+		
+		amount = document.getElementById('amount').value;
+		widthPrice = getMeassurePrice(document.getElementById('width').value);
+		heightPrice =getMeassurePrice(document.getElementById('height').value);
+									
+		price = amount * (widthPrice + heightPrice);
+		
+		document.getElementById('price').setAttribute('value', price.toFixed(2) );
 	}
 		
-	function getWidthPrice(width){
-		var i;
-		if(width < widthValues[0]){
-			return minPrice;
-		}else{
-			for(i=0; i< widthValues.length-1;i++){
-				if(width > widthValues[i] && width <= widthValues[i+1]){
-					return i*1.15*minPrice;
-				}
-			}
-		}
-	}
-			
-	function getHeightPrice(height){
-		var i;
-		if(height < heightValues[0]){
-			return minPrice;
-		}else{
-			for(i=0; i< heightValues.length-1;i++){
-				if(height > heightValues[i] && height <= heightValues[i+1]){
-					return i*1.15*minPrice;
-				}
-			}
-		}
-	}
+	function getMeassurePrice(meassure){
+		return minPrice*meassure;
+	}		
 	</script>
+	
 </head>
 <body style="text-align:center">
     
@@ -58,7 +44,7 @@
 			</tr>
 			<tr>
 				<td>Total: </td>
-				<td><input id="price" value=""/>€</td>
+				<td><input id="price" type="number" value=""/>€</td>
 			</tr>
 		</tbody>
 	</table>
