@@ -3,50 +3,57 @@
 <head>
     <title>Price configurator</title>
 	<script>
-	var minPrice = 0.029;//El cm cuesta 0.029€
-		
-	function getPrice(){
-		var amount, 
-			widthPrice, 
-			heightPrice, 
-			price;
-		
+	  var minPrice = 0.029; //El cm cuesta 0.029€
+
+	  function getPrice() {
+		var amount,
+		  widthPrice,
+		  heightPrice,
+		  price;
+
 		amount = document.getElementById('amount').value;
 		widthPrice = getMeassurePrice(document.getElementById('width').value);
-		heightPrice =getMeassurePrice(document.getElementById('height').value);
-									
+		heightPrice = getMeassurePrice(document.getElementById('height').value);
+
 		price = amount * (widthPrice + heightPrice);
-		
-		document.getElementById('price').setAttribute('value', price.toFixed(2) );
-	}
-		
-	function getMeassurePrice(meassure){
-		return minPrice*meassure;
-	}		
+
+		document.getElementById('price').setAttribute('value', price.toFixed(2));
+	  }
+
+	  function getMeassurePrice(meassure) {
+		return minPrice * meassure;
+	  }
 	</script>
 	
 </head>
 <body style="text-align:center">
-    
-    <table border="0">
-		<tbody>
-			<tr>
-				<td>Cantidad: </td>
-				<td><input id="amount" type="number" min="1" max="1000000" step="1" value ="1" onblur="getPrice()"/></td>
-			</tr>
-			<tr>
-				<td>Ancho: </td>
-				<td><input id="width" type="number" min="5" max="1500" step="5" value ="5" onblur="getPrice()"/></td>
-			</tr>
-			<tr>
-				<td>Alto: </td>
-				<td><input id="height" type="number" min="5" max="1500" step="5" value ="5" onblur="getPrice()"/></td>
-			</tr>
-			<tr>
-				<td>Total: </td>
-				<td><input id="price" type="number" value=""/>€</td>
-			</tr>
-		</tbody>
-	</table>
+
+  <table border="0">
+    <tbody>
+      <tr>
+        <td>Cantidad: </td>
+        <td>
+          <input id="amount" type="number" min="1" max="1000000" step="1" value="1" onblur="getPrice()" />
+        </td>
+      </tr>
+      <tr>
+        <td>Ancho: </td>
+        <td>
+          <input id="width" type="number" min="5" max="1500" step="5" value="100" onblur="getPrice()" />
+        </td>
+      </tr>
+      <tr>
+        <td>Alto: </td>
+        <td>
+          <input id="height" type="number" min="5" max="1500" step="5" value="100" onblur="getPrice()" />
+        </td>
+      </tr>
+      <tr>
+        <td>Total: </td>
+        <td>
+          <input id="price" type="number" value="5.80" />€</td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>
