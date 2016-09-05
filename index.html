@@ -1,73 +1,64 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Price configurator</title>
-	<script>
-	  var minPrice = 5.8;
+	<head>
+		<title>Price configurator</title>
+		<script>
+		  var minPrice = 5.8;
 
-	  function getPrice() {
-		var amount,
-			width,
-			height,
-		  	widthPrice,
-		  	heightPrice,
-		  	price;
+			function getPrice() {
+				var amount,
+					width,
+					height,
+					widthPrice,
+					heightPrice,
+					price;
 
-			amount = getValue('amount');
-		  	width = getValue('width');
-		  	height = getValue('height');
+				amount = getValue('amount');
+				width = getValue('width');
+				height = getValue('height');
 
-		if ((width * height) <= 10000){
-			price = amount * minPrice;
-		} else {
-			price = amount * getMeassurePrice(width, height);
-		}
+				if ((width * height) <= 10000){
+					price = amount * minPrice;
+				} else {
+					price = amount * getMeassurePrice(width, height);
+				}
 
-		setPrice(price);
-	  }
+				setPrice(price);
+			}
 
-		function getValue(element){
-			return document.getElementById(element).value;
-		}
-		
-	  function getMeassurePrice(width, height) {
-		return (minPrice/100 * width * height)/100;
-	  }
-		
-	  function setPrice(price){
-	  	document.getElementById('price').setAttribute('value', price.toFixed(2));
-	  }
-	</script>
-	
-</head>
-<body style="text-align:center">
+			function getMeassurePrice(width, height) {
+				return (minPrice/100 * width * height)/100;
+			}
 
-  <table border="0">
-    <tbody>
-      <tr>
-        <td>Cantidad: </td>
-        <td>
-          <input id="amount" type="number" min="1" max="1000000" step="1" value="1" onblur="getPrice()" />
-        </td>
-      </tr>
-      <tr>
-        <td>Ancho: </td>
-        <td>
-          <input id="width" type="number" min="30" max="1500" step="5" value="100" onblur="getPrice()" />
-        </td>
-      </tr>
-      <tr>
-        <td>Alto: </td>
-        <td>
-          <input id="height" type="number" min="30" max="1500" step="5" value="100" onblur="getPrice()" />
-        </td>
-      </tr>
-      <tr>
-        <td>Total: </td>
-        <td>
-          <input id="price" type="number" value="5.80" />€</td>
-      </tr>
-    </tbody>
-  </table>
-</body>
+			function getValue(element){
+				return document.getElementById(element).value;
+			}
+
+			function setPrice(price){
+				document.getElementById('price').setAttribute('value', price.toFixed(2));
+			}
+		</script>
+	</head>
+	<body style="text-align:center">
+		<table border="0">
+			<tbody>
+				<tr>
+					<td>Cantidad: </td>
+					<td><input id="amount" type="number" min="1" max="1000000" step="1" value="1" onblur="getPrice()" /></td>
+				</tr>
+				<tr>
+					<td>Ancho: </td>
+					<td><input id="width" type="number" min="30" max="1500" step="5" value="100" onblur="getPrice()" /></td>
+				</tr>
+				<tr>
+					<td>Alto: </td>
+					<td><input id="height" type="number" min="30" max="1500" step="5" value="100" onblur="getPrice()" /></td>
+				</tr>
+				<tr>
+					<td>Total: </td>
+					<td><input id="price" type="number" value="5.80" />€</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>
