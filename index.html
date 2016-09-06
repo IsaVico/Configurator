@@ -3,8 +3,21 @@
 	<head>
 		<title>Price configurator</title>
 		<script>
-		  var minPrice = 5.8;
+			var minPrice = 5.8;
 
+			window.onload=function(){
+				setListeners('amount');
+				setListeners('width');
+				setListeners('height');
+			}
+      
+			function setListeners(element){
+				var field = getElement(element);
+				field.addEventListener("input", getPrice, false);
+				field.addEventListener("keyup", getPrice, false);
+				field.addEventListener("change", getPrice, false);
+			}
+			
 			function getPrice() {
 				var amount,
 					width,
@@ -31,11 +44,15 @@
 			}
 
 			function getValue(element){
-				return document.getElementById(element).value;
+				return getElement(element).value;
+			}
+
+			function getElement(element){
+				return document.getElementById(element);
 			}
 
 			function setPrice(price){
-				document.getElementById('price').setAttribute('value', price.toFixed(2));
+				getElement('price').setAttribute('value', price.toFixed(2));
 			}
 		</script>
 	</head>
